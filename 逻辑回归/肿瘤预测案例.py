@@ -32,3 +32,10 @@ ret = estimator.score(x_test, y_test)
 print("准确率为：\n", ret)
 y_pre = estimator.predict(x_test)
 print("预测值为：\n", y_pre)
+# 精确率召回率
+ret = classification_report(y_test, y_pre, labels=(2, 4), target_names=('良性', '恶性'))
+print(ret)
+# roc曲线与auc指标
+# 必须在[0-1]
+y_test = np.where(y_test > 3, 1, 0)
+print(roc_auc_score(y_test, y_pre))
